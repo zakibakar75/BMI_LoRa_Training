@@ -1,0 +1,158 @@
+[
+    {
+        "id": "608e6502.01b77c",
+        "type": "mqtt in",
+        "z": "be091255.386b3",
+        "name": "",
+        "topic": "+/devices/+/up",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d7717275.20b2",
+        "x": 230,
+        "y": 120,
+        "wires": [
+            [
+                "d1e4e7b.7dc0a18"
+            ]
+        ]
+    },
+    {
+        "id": "f5714b8d.b43868",
+        "type": "debug",
+        "z": "be091255.386b3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d1e4e7b.7dc0a18",
+        "type": "json",
+        "z": "be091255.386b3",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 430,
+        "y": 120,
+        "wires": [
+            [
+                "c82445e9.88afa8",
+                "f4fb7d88.985af"
+            ]
+        ]
+    },
+    {
+        "id": "9e2146cb.7a3268",
+        "type": "function",
+        "z": "be091255.386b3",
+        "name": "Map",
+        "func": "msg.payload = {\n    name : \"sensor1\",\n    lat : msg.payload.payload_fields.Latitude,\n    lon : msg.payload.payload_fields.Longitude,\n    temperature : msg.payload.payload_fields.Temperature,\n    humidity : msg.payload.payload_fields.Humidity,\n    time : msg.payload.metadata.time,\n    pulseRate : msg.payload.payload_fields.PulseRate\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 450,
+        "y": 260,
+        "wires": [
+            [
+                "f5714b8d.b43868",
+                "91a558e1.40c278"
+            ]
+        ]
+    },
+    {
+        "id": "91a558e1.40c278",
+        "type": "worldmap",
+        "z": "be091255.386b3",
+        "name": "",
+        "lat": "",
+        "lon": "",
+        "zoom": "",
+        "layer": "",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "false",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "false",
+        "coords": "none",
+        "showgrid": "false",
+        "path": "/worldmap",
+        "x": 660,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "c82445e9.88afa8",
+        "type": "debug",
+        "z": "be091255.386b3",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f4fb7d88.985af",
+        "type": "moment",
+        "z": "be091255.386b3",
+        "name": "Date Conversion",
+        "topic": "",
+        "input": "payload.metadata.time",
+        "inputType": "msg",
+        "inTz": "ETC/GMT",
+        "adjAmount": "0",
+        "adjType": "hours",
+        "adjDir": "add",
+        "format": "DD MMM YYYY HH:mm:ss",
+        "locale": "en_SG",
+        "output": "payload.metadata.time",
+        "outputType": "msg",
+        "outTz": "Asia/Singapore",
+        "x": 270,
+        "y": 260,
+        "wires": [
+            [
+                "9e2146cb.7a3268"
+            ]
+        ]
+    },
+    {
+        "id": "d7717275.20b2",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "TTN-EU",
+        "broker": "eu.thethings.network",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
