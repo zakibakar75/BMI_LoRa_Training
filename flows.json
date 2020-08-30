@@ -54,7 +54,7 @@
         "type": "function",
         "z": "be091255.386b3",
         "name": "Map",
-        "func": "msg.payload = {\n    name : \"sensor1\",\n    lat : msg.payload.payload_fields.Latitude,\n    lon : msg.payload.payload_fields.Longitude,\n    temperature : msg.payload.payload_fields.Temperature,\n    humidity : msg.payload.payload_fields.Humidity,\n    time : msg.payload.metadata.time,\n    pulseRate : msg.payload.payload_fields.PulseRate\n}\nreturn msg;",
+        "func": "msg.payload = {\n    name : \"sensor1\",\n    lat : msg.payload.payload_fields.Latitude,\n    lon : msg.payload.payload_fields.Longitude,\n    temperature : msg.payload.payload_fields.Temperature,\n    humidity : msg.payload.payload_fields.Humidity,\n    sensortime : msg.payload.metadata.time,\n    pulseRate : msg.payload.payload_fields.PulseRate\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
