@@ -1,0 +1,15 @@
+function Decoder(bytes, port) {
+  // Decode an uplink message from a buffer
+  // (array) of bytes to an object of fields.
+  var decoded = {};
+  
+  decoded.Latitude = (bytes[0] << 16 | bytes[1] << 8 | bytes[2])/10000;
+  decoded.Longitude = (bytes[3] << 16 | bytes[4] << 8 | bytes[5])/10000;
+  decoded.Humidity = ((bytes[6] << 8) | bytes[7])/100;
+  decoded.Temperature = ((bytes[8] << 8) | bytes[9])/100;
+  decoded.PulseRate = bytes[10];
+
+  // if (port === 1) decoded.led = bytes[0];
+
+  return decoded;
+}
