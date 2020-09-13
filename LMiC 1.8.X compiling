@@ -1,0 +1,1 @@
+in /src/lmic/oslmic.h, line 230, please add static in front of inline
